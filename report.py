@@ -18,14 +18,17 @@ def get_binary_file_downloader_html(file_path, file_label):
 # Create a Streamlit app
 st.title("Pandas Profiling Report Generator")
 
-# Allow the user to upload a CSV file
-uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
+# Allow the user to upload a CSV or XLSX file
+uploaded_file = st.file_uploader("Upload a CSV or XLSX file", type=["csv", "xlsx"])
 
 if uploaded_file is not None:
     st.write("File Uploaded!")
 
-    # Read the uploaded CSV file into a DataFrame
-    df = pd.read_csv(uploaded_file)
+    # Read the uploaded file into a DataFrame based on the file extension
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file)
+    elif uploaded_file.name.endswith(".xlsx"):
+        df = pd.read_excel(uploaded_file)
 
     # Display a preview of the DataFrame
     st.dataframe(df.head())
@@ -40,4 +43,4 @@ if uploaded_file is not None:
         st.markdown(get_binary_file_downloader_html("output.html", "Download Report"), unsafe_allow_html=True)
 
 # Optionally, provide additional information or instructions
-st.write("This app allows you to upload a CSV file, generate a Pandas Profiling report, and download the report in HTML format.")
+st.write("This app allows you to upload a CSV or XLSX file, generate a Pandas Profiling report, and download the report in HTML format.")
