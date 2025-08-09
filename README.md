@@ -20,10 +20,6 @@ You can upload any csv file and get/download report in HTML format and In the re
 - streamlit
 - pandas
 - ydata_profiling
-## Demo
-
-Use this web app:
-[Link](https://pandas-profiling-report-generator-9dra8gtbx7ydm24adtzgip.streamlit.app/)
 
 
 ## Authors
